@@ -30,5 +30,6 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
 	&& ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 
+EXPOSE 80/tcp
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["gwan"]
