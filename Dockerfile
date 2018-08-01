@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 LABEL maintainer="docker@public.swineson.me"
 
 # install packages
@@ -9,18 +9,15 @@ RUN apt-get -y update \
     && apt-get -y autoclean \
     && rm -rf /var/lib/apt/lists/*
 
-# install server
 WORKDIR /tmp
+
+# install server
 RUN wget http://gwan.com/archives/gwan_linux64-bit.tar.bz2 \
     && tar -xvjf gwan_linux64-bit.tar.bz2 \
     && mv gwan_linux64-bit/gwan /usr/local/bin/gwan \
     && chmod +x /usr/local/bin/gwan \
     && mkdir -p /var/www/gwan \
     && cp -r gwan_linux64-bit/* /var/www/gwan \
-    && wget http://www.as2.com/linux/tools/G-WAN_full-install.tar.bz2 \
-    && tar -xvjf G-WAN_full-install.tar.bz2 \
-    && chmod +x G-WAN_full-install \
-    && ./G-WAN_full-install \
     && rm -rf /tmp/* \
     && gwan -v
 
