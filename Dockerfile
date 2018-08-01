@@ -1,6 +1,14 @@
 FROM ubuntu:latest
 LABEL maintainer="docker@public.swineson.me"
 
+# install packages
+RUN apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get -y install wget \
+    && apt-get -y autoremove \
+    && apt-get -y autoclean \
+    && rm -rf /var/lib/apt/lists/*
+
 # install server
 WORKDIR /tmp
 RUN wget http://gwan.com/archives/gwan_linux64-bit.tar.bz2 \
