@@ -12,11 +12,15 @@ RUN apt-get -y update \
 # install server
 WORKDIR /tmp
 RUN wget http://gwan.com/archives/gwan_linux64-bit.tar.bz2 \
-    && tar -xjvf gwan_linux64-bit.tar.bz2 \
+    && tar -xvjf gwan_linux64-bit.tar.bz2 \
     && mv gwan_linux64-bit/gwan /usr/local/bin/gwan \
     && chmod +x /usr/local/bin/gwan \
     && mkdir -p /var/www/gwan \
     && cp -r gwan_linux64-bit/* /var/www/gwan \
+    && wget http://www.as2.com/linux/tools/G-WAN_full-install.tar.bz2 \
+    && tar -xvjf G-WAN_full-install.tar.bz2 \
+    && chmod +x G-WAN_full-install \
+    && ./G-WAN_full-install \
     && rm -rf /tmp/* \
     && gwan -v
 
